@@ -20,24 +20,24 @@
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+                    <a class="navbar-brand" href="{% url 'test_app:index' %}">РАССВЕТ – Ваши руки и глаза в Китае</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link" href="">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="admin">admin</a></li>
-                            <li class="nav-item"><a class="nav-link" href="about.html">about</a></li>
-                            <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
-                            <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'test_app:index' %}">ПРАЙС</a></li>
+                            <li class="nav-item"><a class="nav-link" href="admin">НОВОСТИ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'test_app:about' %}">НАШИ УСЛУГИ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'test_app:pricing' %}">ПОДАТЬ ЗАЯВКУ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="faq.html">КОНТАКТЫ</a></li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">ВОЙТИ</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
                                     <li><a class="dropdown-item" href="blog-home.html">Blog Home</a></li>
                                     <li><a class="dropdown-item" href="blog-post.html">Blog Post</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">АДМИН</a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
                                     <li><a class="dropdown-item" href="portfolio-overview.html">Portfolio Overview</a></li>
                                     <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
@@ -53,11 +53,11 @@
                     <div class="row gx-5 align-items-center justify-content-center">
                         <div class="col-lg-8 col-xl-7 col-xxl-6">
                             <div class="my-5 text-center text-xl-start">
-                                <h1 class="display-5 fw-bolder text-white mb-2">A Bootstrap 5 template for modern businesses</h1>
-                                <p class="lead fw-normal text-white-50 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+                                <h1 class="display-5 fw-bolder text-white mb-2">Здравствуйте, дорогие друзья!</h1>
+                                <p class="lead fw-normal text-white-50 mb-4">Кто ещё с нами не знаком, нас зовут Владимир и Татьяна. Больше четырёх лет мы живём в Гуанчжоу и специализируемся на выкупе, проверке и отправке товаров из Китая в Россию. В Гуанчжоу у нас есть свой склад, а полтора года назад официально открылась наша компания «Рассвет».</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Get Started</a>
-                                    <a class="btn btn-outline-light btn-lg px-4" href="#!">Learn More</a>
+                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#features">Начать</a>
+                                    <a class="btn btn-outline-light btn-lg px-4" href="#!">Узнать еще</a>
                                 </div>
                             </div>
                         </div>
@@ -69,29 +69,25 @@
             <section class="py-5" id="features">
                 <div class="container px-5 my-5">
                     <div class="row gx-5">
-                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">A better way to start building.</h2></div>
+                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Итак, чем мы занимаемся?</h2></div>
                         <div class="col-lg-8">
                             <div class="row gx-5 row-cols-1 row-cols-md-2">
                                 <div class="col mb-5 h-100">
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                                    <h2 class="h5">Featured title</h2>
-                                    <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                                    <h2 class="h5">ВЫКУП ТОВАРА</h2>
+                                    <p class="mb-0">Выкупим Ваш товар (без минимальной суммы закупа), с нашей комиссией — 10% от суммы заказа. В стоимость входит базовая проверка на брак и осмотр на повреждения упаковки. Кроме того можем консолидировать товар от разных поставщиков на нашем складе и упаковать для отправки.</p>
                                 </div>
                                 <div class="col mb-5 h-100">
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                                    <h2 class="h5">Featured title</h2>
-                                    <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                                    <h2 class="h5">ПРОВЕРКА ТОВАРА</h2>
+                                    <p class="mb-0">Весь выкупаемый товар приходит на наш склад, и мы лично проверяем груз перед отправкой из Китая. По запросу делаем фото и видео отчёт клиенту. По необходимости, можем выехать на фабрику с инспекцией — от 100$ за день инспекции.</p>
                                 </div>
                                 <div class="col mb-5 mb-md-0 h-100">
                                     <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                                    <h2 class="h5">Featured title</h2>
-                                    <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                                    <h2 class="h5">ДОСТАВКА В РФ</h2>
+                                    <p class="mb-0">Мы сотрудничаем с несколькими карго компаниями, которые проверены многими и многими партиями грузов. Поэтому мы знаем, как оптимально по цене, качеству и скорости отправлять товары разных объемов. Доставка осуществляется до склада в Москве, далее идёт транспортной компанией в город назначения.</p>
                                 </div>
-                                <div class="col h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                                    <h2 class="h5">Featured title</h2>
-                                    <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -225,24 +221,3 @@
                 </div>
             </section>
         </main>
-        <!-- Footer-->
-        <footer class="bg-dark py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2022</div></div>
-                    <div class="col-auto">
-                        <a class="link-light small" href="#!">Privacy</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Terms</a>
-                        <span class="text-white mx-1">&middot;</span>
-                        <a class="link-light small" href="#!">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="{% static 'js/scripts.js' %}"></script>
-    </body>
-</html>

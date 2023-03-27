@@ -50,7 +50,7 @@ def application(request):
             message = form.cleaned_data['message']
             email = form.cleaned_data['email']
 
-            # TODO пока не работает
+            # TODO пока не работает 1
             a = Client()
             a.name = name
             a.email = email

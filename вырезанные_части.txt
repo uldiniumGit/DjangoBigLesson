@@ -1,0 +1,18 @@
+Наши клиенты:
+    <br>
+    <br>
+    {% for item in client %}
+        {{ item.name }}
+        <br>
+        {{ item.phone_number }}
+        <br>
+        {{ item.email }}
+        <br>
+        <br>
+        <img src="{{item.image.url}}" width="300">
+        <br>
+        <br>
+    {% endfor %}
+
+
+

@@ -20,7 +20,6 @@ class Type(models.Model):
 class Client(models.Model):
     name = models.CharField(max_length=32, unique=True)
     description = models.TextField()
-    phone_number = models.CharField(max_length=16, unique=True)
     email = models.EmailField(max_length=32, unique=True)
 
     # Связь с категорией
@@ -28,10 +27,20 @@ class Client(models.Model):
     # email = models.ForeignKey(Email, on_delete=models.CASCADE)
 
     # Много - много
-    city = models.ManyToManyField(City)
+    city = models.ManyToManyField(City, null=True, blank=True)
 
-    type = models.ManyToManyField(Type)
+    type = models.ManyToManyField(Type, null=True, blank=True)
+
+    # Картинка
+    image = models.ImageField(upload_to='clients', null=True, blank=True)
 
     def __str__(self):
         return self.name
 
+
+class News(models.Model):
+    news_name = models.CharField(max_length=32, unique=False)
+    news_text = models.CharField(max_length=512, unique=False)
+
+    def __str__(self):
+        return self.news_name

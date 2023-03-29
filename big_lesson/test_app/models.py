@@ -27,12 +27,12 @@ class Client(models.Model):
     # email = models.ForeignKey(Email, on_delete=models.CASCADE)
 
     # Много - много
-    city = models.ManyToManyField(City, null=True, blank=True)
+    # city = models.ManyToManyField(City, null=True, blank=True)
 
-    type = models.ManyToManyField(Type, null=True, blank=True)
+    # type = models.ManyToManyField(Type, null=True, blank=True)
 
     # Картинка
-    image = models.ImageField(upload_to='clients', null=True, blank=True)
+    # image = models.ImageField(upload_to='clients', null=True, blank=True)
 
     def __str__(self):
         return self.name

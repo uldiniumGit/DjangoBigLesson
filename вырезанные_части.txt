@@ -15,4 +15,163 @@
     {% endfor %}
 
 
+{% for i in news %}
+    <h2>{{ i.news_name }}</h2>
+    <p>{{ i.news_text }}</p>
+{% endfor %}
 
+
+Старый почти рабочий скрипт
+
+function showNews() {
+	var news = document.getElementById("news");
+	if (news.style.display === "none") {
+		news.style.display = "block";
+	} else {
+		news.style.display = "none";
+	}
+}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+страница с новостями
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include 'test_app/include_files/head.html' %}
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            {% include 'test_app/include_files/navigation.html' %}
+            <!-- Page Content-->
+            <section class="py-5">
+                <br>
+                <br>
+
+                <div class="flex-container">
+                    <div class="flex-element">1234</div>
+
+                    <div class="flex-element">5678</div>
+
+                  </div>
+
+                <div class="container px-5 my-5">
+                    <div class="text-center mb-5">
+                        <h1 class="fw-bolder">Наши новости</h1>
+                    </div>
+                    <div class="row gx-5">
+                        <div class="col-xl-8">
+                            <!-- FAQ Accordion 1-->
+                            <h2 class="fw-bolder mb-3">Новости 1</h2>
+
+                            {% for i in news %}
+                                <div class="news-container">
+                                    <table class="news-table">
+                                        <tr>
+                                            <td class="news-item">
+                                                <h2 class="news-title"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{{ i.news_name }}</button></h2>
+                                                <p class="news-text">{{ i.news_text }}</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            {% endfor %}
+                            <div class="col-xl-4">
+                            <div class="card border-0 bg-light mt-xl-5">
+                                <div class="card-body p-4 py-lg-5">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="text-center">
+                                            <div class="h6 fw-bolder">Have more questions?</div>
+                                            <p class="text-muted mb-4">
+                                                Contact us at
+                                                <br />
+                                                <a href="#!">support@domain.com</a>
+                                            </p>
+                                            <div class="h6 fw-bolder">Follow us</div>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-twitter"></i></a>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-facebook"></i></a>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-linkedin"></i></a>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-youtube"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="container px-5 my-5">
+                    <div class="text-center mb-5">
+                        <h1 class="fw-bolder">Наши новости</h1>
+                    </div>
+                    <div class="row gx-5">
+                        <div class="col-xl-8">
+                            <!-- FAQ Accordion 1-->
+                            <h2 class="fw-bolder mb-3">Новости 1</h2>
+                            <div class="accordion mb-5 mb-xl-0" id="accordionExample2">
+                                {% for i in news %}
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingOne"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">{{ i.news_name }}</button></h3>
+                                    <div class="accordion-collapse collapse show" id="collapseOne" aria-labelledby="headingOne" data-bs-parent="#accordionExample2">
+                                        <div class="accordion-body">
+                                            <strong>{{ i.news_text }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                            <div class="card border-0 bg-light mt-xl-5">
+                                <div class="card-body p-4 py-lg-5">
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="text-center">
+                                            <div class="h6 fw-bolder">Have more questions?</div>
+                                            <p class="text-muted mb-4">
+                                                Contact us at
+                                                <br />
+                                                <a href="#!">support@domain.com</a>
+                                            </p>
+                                            <div class="h6 fw-bolder">Follow us</div>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-twitter"></i></a>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-facebook"></i></a>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-linkedin"></i></a>
+                                            <a class="fs-5 px-2 link-dark" href="#!"><i class="bi-youtube"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Call to action-->
+            <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
+                <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                    <div class="mb-4 mb-xl-0">
+                        <div class="fs-3 fw-bold text-white">Мы — Ваши руки и глаза в Китае!</div>
+                        <div class="text-white-50">Честность и открытость с клиентами — наш девиз! Мы всегда на связи и рады ответить на все Ваши вопросы!</div>
+                    </div>
+                    <div class="ms-xl-4">
+                    <div class="input-group mb-2">
+                        <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
+                        <button class="btn btn-outline-light" id="button-newsletter" type="button">Зарегистрироваться</button>
+                    </div>
+                    <div class="small text-white-50">Мы заботимся о вашей приватности.</div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

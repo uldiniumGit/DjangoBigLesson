@@ -20,10 +20,14 @@
                             <p class="lead fw-normal text-muted mb-0">Оставь заявку, и мы перезвоним</p>
                         </div>
                         <div class="row gx-5 justify-content-center">
+                            <h4>С помощью этой формы можно добавлять клиентов в базу данных. Для проверки они временно отображаются на главной странице вместо отзывов.  </h4>
+                            <h4>Позже форма будет изменена визуально и функционально.</h4>
+                            <br>
+                            <br>
                             <div class="col-lg-8 col-xl-6">
                                 <form method="post" id="contactForm">
                                     {% csrf_token %}
-                                    {{form.as_ul}}
+                                    {{form.as_p}}
                                     <button type ="submit" id="sendMessageButton">Send</button>
                                 </form>
                             </div>

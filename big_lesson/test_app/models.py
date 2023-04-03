@@ -39,8 +39,9 @@ class Client(models.Model):
 
 
 class News(models.Model):
-    news_name = models.CharField(max_length=32, unique=False)
-    news_text = models.CharField(max_length=512, unique=False)
+    title = models.CharField(max_length=100, unique=True, null=True)
+    text = models.TextField(null=True)
+    video_link = models.CharField(max_length=1000, blank=True, null=True)
 
     def __str__(self):
-        return self.news_name
+        return self.title

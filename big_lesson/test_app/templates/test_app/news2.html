@@ -15,27 +15,18 @@
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-6">
                             <div class="text-center mb-5">
-                                <h1 class="fw-bolder">{{ news01.news_name }}</h1>
-                                <p class="lead fw-normal text-muted mb-0">{{ news01.news_text }}</p>
+                                <br>
+                                <br>
+                                {% if news01.title %}
+                                <h1 class="fw-bolder">{{ news01.title }}</h1>
+                                <p class="lead fw-normal text-muted">{{ news01.text|linebreaks }}</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
-                    <div class="row gx-5">
-                        <div class="col-12"><img class="img-fluid rounded-3 mb-5" src="https://dummyimage.com/1300x700/343a40/6c757d" alt="..." /></div>
-                        <div class="col-lg-6"><img class="img-fluid rounded-3 mb-5" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
-                        <div class="col-lg-6"><img class="img-fluid rounded-3 mb-5" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
-                    </div>
-                    <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-6">
-                            <div class="text-center mb-5">
-                                <p class="lead fw-normal text-muted">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam deserunt architecto enim eos accusantium fugit recusandae illo iste dignissimos possimus facere ducimus odit voluptatibus exercitationem, ex laudantium illum voluptatum corporis.</p>
-                                <a class="text-decoration-none" href="#!">
-                                    View project
-                                    <i class="bi-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="text-center">
+                    <iframe width="1600" height="900" src={{ news01.video_link }}></iframe>
                 </div>
             </section>
         </main>

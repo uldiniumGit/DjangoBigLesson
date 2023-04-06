@@ -17,16 +17,17 @@
                             <div class="text-center mb-5">
                                 <br>
                                 <br>
-                                {% if news01.title %}
-                                <h1 class="fw-bolder">{{ news01.title }}</h1>
-                                <p class="lead fw-normal text-muted">{{ news01.text|linebreaks }}</p>
+                                {% if news02.title %}
+                                <h1 class="fw-bolder">{{ news02.title }}</h1>
+                                <p class="lead fw-normal text-muted">{{ news02.text|linebreaks }}</p>
+                                <p class="lead fw-normal text-muted">{{ news02.create }}</p>
                                 {% endif %}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="text-center">
-                    <iframe width="1600" height="900" src={{ news01.video_link }}></iframe>
+                    <iframe width="1600" height="900" src={{ news02.video_link }}></iframe>
                 </div>
             </section>
         </main>

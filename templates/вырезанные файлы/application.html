@@ -27,7 +27,15 @@
                             <div class="col-lg-8 col-xl-6">
                                 <form method="post" id="contactForm">
                                     {% csrf_token %}
-                                    {{form.as_p}}
+                                    {# form.as_ul #}
+                                    {% for field in form %}
+                                        <p>{{field.label_tag}}</p>
+                                        <p>{{field}}</p>
+                                        {% for error in field.errors %}
+                                            {{error}}
+                                        {% endfor %}
+                                        <hr>
+                                    {% endfor %}
                                     <button type ="submit" id="sendMessageButton">Send</button>
                                 </form>
                             </div>

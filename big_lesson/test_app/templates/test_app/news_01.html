@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include 'test_app/include_files/head.html' %}
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            {% include 'test_app/include_files/navigation.html' %}
+            <!-- Page Content-->
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="text-center mb-5">
+                                <br>
+                                <br>
+                                {% if news00.title %}
+                                    <h1 class="fw-bolder">{{ news00.title }}</h1>
+                                    <p class="lead fw-normal text-muted">{{ news00.text|linebreaks }}</p>
+                                    <p class="lead fw-normal text-muted">{{ news00.create }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <iframe width="1600" height="900" src={{ news00.video_link }}></iframe>
+                </div>
+            </section>
+        </main>
+        <!-- Call to action-->
+            <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
+                <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                    <div class="mb-4 mb-xl-0">
+                        <div class="fs-3 fw-bold text-white">Мы — Ваши руки и глаза в Китае!</div>
+                        <div class="text-white-50">Честность и открытость с клиентами — наш девиз! Мы всегда на связи и рады ответить на все Ваши вопросы!</div>
+                    </div>
+                    <div class="ms-xl-4">
+                    <div class="input-group mb-2">
+                        <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
+                        <button class="btn btn-outline-light" id="button-newsletter" type="button">Зарегистрироваться</button>
+                    </div>
+                    <div class="small text-white-50">Мы заботимся о вашей приватности.</div>
+                    </div>
+                </div>
+            </aside>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
@@ -21,6 +22,7 @@ class Client(models.Model):
     name = models.CharField(max_length=32, unique=True)
     description = models.TextField()
     email = models.EmailField(max_length=32, unique=True)
+    create = models.DateTimeField(default=timezone.now)
 
     # Связь с категорией
     # Один - много
@@ -42,6 +44,7 @@ class News(models.Model):
     title = models.CharField(max_length=100, unique=True, null=True)
     text = models.TextField(null=True)
     video_link = models.CharField(max_length=1000, blank=True, null=True)
+    create = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.title

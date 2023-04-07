@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from userapp.models import DeliveryUser
 
 # Create your models here.
 

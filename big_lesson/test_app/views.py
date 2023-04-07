@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, TemplateView, CreateView
@@ -99,11 +100,14 @@ class Application(CreateView, NewsContextMixin):
 '''
 
 
-class CreateNews(CreateView, NewsContextMixin):
+class CreateNews(UserPassesTestMixin, CreateView, NewsContextMixin):
     fields = ['title', 'text', 'video_link']
     model = News
     success_url = reverse_lazy('test_app:news01')
     template_name = 'test_app/create_news.html'
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 class ContactUs(TemplateView, NewsContextMixin):
@@ -135,9 +139,12 @@ class NewsListView(ListView, NewsContextMixin):
         return super(NewsListView, self).get_queryset().order_by('-id')
 
 
-class ClientsListView(ListView, NewsContextMixin):
+class ClientsListView(UserPassesTestMixin, ListView, NewsContextMixin):
     model = Client
     template_name = 'client_list.html'
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 # DONE создать четыре страницы под последние новости. Страница должна наполняться данными из списка новостей.

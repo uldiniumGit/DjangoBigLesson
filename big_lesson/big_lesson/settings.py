@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'test_app',
+    'userapp',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# переназначение модели пользователя
+AUTH_USER_MODEL = 'userapp.DeliveryUser'
+
+# переходы
+# после логина
+LOGIN_REDIRECT_URL = '/'
+# после выхода
+LOGOUT_REDIRECT_URL = '/'
+# на логин если нет прав
+LOGIN_URL = '/users/login/'

@@ -1,0 +1,123 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include 'test_app/include_files/head.html' %}
+    </head>
+    <body class="d-flex flex-column">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            {% include 'test_app/include_files/navigation.html' %}
+            <!-- Pricing section-->
+            <section class="bg-light py-5">
+                <div class="container px-5 my-5">
+                    <div class="text-center mb-5">
+                        <h1 class="fw-bolder">Цены на наши услуги:</h1>
+                    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <!-- Pricing card free-->
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="card mb-5 mb-xl-0">
+                                <div class="card-body p-5">
+                                    <div class="small text-uppercase fw-bold text-muted">Хранение на складе.</div>
+                                    <div class="mb-3">
+                                        <span class="display-4 fw-bold">$55$</span>
+                                        <span class="text-muted">/ мес.</span>
+                                    </div>
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary"></i>
+                                            Куб.м. в мес
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary"></i>
+                                            Срок хранения ДО месяца
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary"></i>
+                                            До 200 кг в одном кубометре
+                                        </li>
+                                    </ul>
+                                    <div class="d-grid"><a class="btn btn-outline-primary" href="#!">Оставить заявку</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pricing card pro-->
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="card mb-5 mb-xl-0">
+                                <div class="card-body p-5">
+                                    <div class="small text-uppercase fw-bold">
+                                        <i class="bi bi-star-fill text-warning"></i>
+                                        Хранение на складе.
+                                    </div>
+                                    <div class="mb-3">
+                                        <span class="display-4 fw-bold">50$</span>
+                                        <span class="text-muted">/ мес.</span>
+                                    </div>
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary"></i>
+                                            Куб.м. в мес
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary"></i>
+                                            Срок хранения ОТ месяца
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary"></i>
+                                            До 200 кг в одном кубометре
+                                        </li>
+                                    </ul>
+                                    <div class="d-grid"><a class="btn btn-primary" href="#!">Оставить заявку</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Pricing card enterprise-->
+                        <div class="col-lg-6 col-xl-4">
+                            <div class="card">
+                                <div class="card-body p-5">
+                                    <div class="small text-uppercase fw-bold text-muted">Проверка товара на брак</div>
+                                    <div class="mb-3">
+                                        <span class="display-4 fw-bold">2$</span>
+                                        <span class="text-muted">/ кг.</span>
+                                    </div>
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="mb-2">
+                                            <i class="bi bi-check text-primary"></i>
+                                            ОТ 10 кг
+                                        </li>
+                                    </ul>
+                                    <div class="d-grid"><a class="btn btn-outline-primary" href="#!">Оставить заявку</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Call to action-->
+        <br>
+        <br>
+        <br>
+        <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
+            <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
+                <div class="mb-4 mb-xl-0">
+                    <div class="fs-3 fw-bold text-white">Мы — Ваши руки и глаза в Китае!</div>
+                    <div class="text-white-50">Честность и открытость с клиентами — наш девиз! Мы всегда на связи и рады ответить на все Ваши вопросы!</div>
+                </div>
+                <div class="ms-xl-4">
+                    <div class="input-group mb-2">
+                        <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
+                        <button class="btn btn-outline-light" id="button-newsletter" type="button">Зарегистрироваться</button>
+                    </div>
+                    <div class="small text-white-50">Мы заботимся о вашей приватности.</div>
+                </div>
+            </div>
+        </aside>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+</html>

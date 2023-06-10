@@ -11,42 +11,123 @@
             {% include 'test_app/include_files/navigation.html' %}
             <!-- Page Content-->
             <section class="py-5">
-                <div class="container px-5 my-5">
-                    <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-6">
-                            <div class="text-center mb-5">
-                                <br>
-                                <br>
-                                {% if news01.title %}
+                <div class="container px-5">
+                    <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
+                        <div class="mb-5">
+                            <br>
+                            <br>
+                            {% if news01.title %}
                                 <h1 class="fw-bolder">{{ news01.title }}</h1>
                                 <p class="lead fw-normal text-muted">{{ news01.text|linebreaks }}</p>
-                                <p class="lead fw-normal text-muted">{{ news01.create }}</p>
+                            {% endif %}
+
+                            {% if news01.img1 %}
+                            <div class="slideshow-container">
+                                {% if news01.img1 %}
+                                <div class="mySlides fade">
+                                  <img src="{{news01.img1.url}}" style="width:100%">
+                                </div>
                                 {% endif %}
-                            </div>
+                                {% if news01.img2 %}
+                                <div class="mySlides fade">
+                                  <img src="{{news01.img2.url}}" style="width:100%">
+                                </div>
+                                {% endif %}
+                                {% if news01.img3 %}
+                                <div class="mySlides fade">
+                                  <img src="{{news01.img3.url}}" style="width:100%">
+                                </div>
+                                {% endif %}
+                                {% if news01.img4 %}
+                                <div class="mySlides fade">
+                                  <img src="{{news01.img4.url}}" style="width:100%">
+                                </div>
+                                {% endif %}
+                                {% if news01.img5 %}
+                                <div class="mySlides fade">
+                                  <img src="{{news01.img5.url}}" style="width:100%">
+                                </div>
+                                {% endif %}
+                                {% if news01.img1 and news01.img2 %}
+                                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                                <a class="next" onclick="plusSlides(1)">❯</a>
+                                {% endif %}
+                                </div>
+                                <br>
+                                {% if news01.img1 and news01.img2 %}
+                                <div style="text-align:center">
+                                    {% if news01.img1 %}
+                                      <span class="dot" onclick="currentSlide(1)"></span>
+                                    {% endif %}
+                                    {% if news01.img2 %}
+                                      <span class="dot" onclick="currentSlide(2)"></span>
+                                    {% endif %}
+                                    {% if news01.img3 %}
+                                      <span class="dot" onclick="currentSlide(3)"></span>
+                                    {% endif %}
+                                    {% if news01.img4 %}
+                                      <span class="dot" onclick="currentSlide(2)"></span>
+                                    {% endif %}
+                                    {% if news01.img5 %}
+                                      <span class="dot" onclick="currentSlide(2)"></span>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                                <script>
+                                    let slideIndex = 1;
+                                    showSlides(slideIndex);
+
+                                    function plusSlides(n) {
+                                      showSlides(slideIndex += n);
+                                    }
+
+                                    function currentSlide(n) {
+                                      showSlides(slideIndex = n);
+                                    }
+
+                                    function showSlides(n) {
+                                      let i;
+                                      let slides = document.getElementsByClassName("mySlides");
+                                      let dots = document.getElementsByClassName("dot");
+                                      if (n > slides.length) {slideIndex = 1}
+                                      if (n < 1) {slideIndex = slides.length}
+                                      for (i = 0; i < slides.length; i++) {
+                                        slides[i].style.display = "none";
+                                      }
+                                      for (i = 0; i < dots.length; i++) {
+                                        dots[i].className = dots[i].className.replace(" active", "");
+                                      }
+                                      slides[slideIndex-1].style.display = "block";
+                                      dots[slideIndex-1].className += " active";
+                                    }
+                                    let timer = setInterval(function() { plusSlides(1); }, 5000); // сохраняем идентификатор интервала в переменной
+                                    let slides = document.getElementsByClassName("mySlides"); // получаем элементы слайдов
+                                    for (let i = 0; i < slides.length; i++) { // для каждого слайда
+                                      slides[i].addEventListener("mouseover", function() { // добавляем обработчик события при наведении мыши
+                                        clearInterval(timer); // останавливаем интервал
+                                      });
+                                      slides[i].addEventListener("mouseout", function() { // добавляем обработчик события при убирании мыши
+                                        timer = setInterval(function() { plusSlides(1); }, 5000); // возобновляем интервал
+                                      });
+                                    }
+                                </script>
+                            {% endif %}
+                            <br>
+                            <br>
+                            <br>
+                            {% if news01.video_link %}
+                                    <div class="container-fluid">
+                                        <iframe src={{ news01.video_link }}></iframe>
+                                    </div>
+                            {% endif %}
+                            <p class="lead fw-normal text-muted">{{ news01.create }}</p>
                         </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <iframe width="1600" height="900" src={{ news01.video_link }}></iframe>
                 </div>
             </section>
         </main>
         <!-- Call to action-->
-            <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
-                <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                    <div class="mb-4 mb-xl-0">
-                        <div class="fs-3 fw-bold text-white">Мы — Ваши руки и глаза в Китае!</div>
-                        <div class="text-white-50">Честность и открытость с клиентами — наш девиз! Мы всегда на связи и рады ответить на все Ваши вопросы!</div>
-                    </div>
-                    <div class="ms-xl-4">
-                    <div class="input-group mb-2">
-                        <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
-                        <button class="btn btn-outline-light" id="button-newsletter" type="button">Зарегистрироваться</button>
-                    </div>
-                    <div class="small text-white-50">Мы заботимся о вашей приватности.</div>
-                    </div>
-                </div>
-            </aside>
+        {% include 'test_app/include_files/footer.html' %}
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

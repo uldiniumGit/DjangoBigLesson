@@ -1,17 +1,17 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-100">
     <div class="container px-5">
-        <a class="navbar-brand" href="{% url 'test_app:index' %}">РАССВЕТ – Ваши руки и глаза в Китае</a>
+        <a class="navbar-brand" href="{% url 'test_app:index' %}"><img src="../media/cropped-222.png"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="{% url 'test_app:prices' %}">ПРАЙС</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'test_app:prices' %}">ЦЕНЫ</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">НАШИ УСЛУГИ</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-                        <li><a class="dropdown-item" href="{% url 'test_app:delivery' %}">Доставка в рф</a></li>
-                        <li><a class="dropdown-item" href="{% url 'test_app:buy' %}">Выкуп товара</a></li>
-                        <li><a class="dropdown-item" href="{% url 'test_app:check' %}">Проверка товара</a></li>
-                        <li><a class="dropdown-item" href="{% url 'test_app:export' %}">Вывоз личных вещей</a></li>
+                        <li><a class="dropdown-item" href="{% url 'test_app:buy' %}">выкуп товара</a></li>
+                        <li><a class="dropdown-item" href="{% url 'test_app:check' %}">проверка товара</a></li>
+                        <li><a class="dropdown-item" href="{% url 'test_app:delivery' %}">доставка в Россию и Казахстан</a></li>
+                        <li><a class="dropdown-item" href="{% url 'test_app:export' %}">оплата продавцам и перевод денег в Китай</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'test_app:submit_application' %}">ПОДАТЬ ЗАЯВКУ</a></li>
@@ -27,13 +27,20 @@
                         {% if news02.title %}
                             <li><a class="dropdown-item" href="{% url 'test_app:news03' %}">{{ news02.title }}</a></li>
                         {% endif %}
-                        <li><a class="dropdown-item" href="{% url 'test_app:news_list' %}" style="background-color: #32393f; color: white;">все новости</a></li>
+                        <li><a class="dropdown-item" href="{% url 'test_app:news_list' %}" style="background-color: #32393f; color: white;">все новости{% if user.is_superuser %}, удалить новость {% endif %}</a></li>
                     </ul>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'test_app:contact_us' %}">КОНТАКТЫ</a></li>
+
                 {% if user.is_superuser %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'test_app:create_news' %}">админка</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{% url 'test_app:client_list' %}">список клиентов</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">администрация</a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                        <li><a class="dropdown-item" href="{% url 'test_app:create_news' %}">Добавить новость</a></li>
+                        <li><a class="dropdown-item" href="{% url 'test_app:create_feedback' %}">Добавить отзыв</a></li>
+                        <li><a class="dropdown-item" href="{% url 'test_app:photos' %}">Изменить карусель</a></li>
+                    </ul>
+                </li>
                 {% endif %}
 
                 <li class="nav-item dropdown">
@@ -52,3 +59,5 @@
         </div>
     </div>
 </nav>
+<br>
+<br>

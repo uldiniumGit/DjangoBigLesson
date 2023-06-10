@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import City, Type, Client, News
+from .models import Client, News, Feedback, Imgs
 
 # Register your models here.
 
-admin.site.register(City)
-admin.site.register(Type)
 admin.site.register(Client)
 admin.site.register(News)
+admin.site.register(Feedback)
+admin.site.register(Imgs)

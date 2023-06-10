@@ -153,3 +153,28 @@ function showNews() {
 #             return render(request, 'test_app/news.html',
 #                           context={'form': form, 'news00': news00, 'news01': news01, 'news02': news02})
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+форма из заявки
+
+<form method="post" id="contactForm">
+    {% csrf_token %}
+    {% for field in form %}
+        <p class="lead fw-normal text-muted mb-0">{{field.label_tag}}</p>
+        <p>{{field}}</p>
+        {% for error in field.errors %}
+            {{error}}
+        {% endfor %}
+    {% endfor %}
+    <br>
+    <button class="s-button" type ="submit" id="sendMessageButton">Отправить</button>
+</form>
+!!!!!!!!!!
+список клиентов в навигации
+<li><a class="dropdown-item" href="{% url 'test_app:client_list' %}">Список клиентов</a></li>
+!!!!!!!!!
+видео из индекса
+<!-- видео-->
+<center>
+    <div class="container-fluid001">
+        <iframe src="https://www.youtube.com/embed/SW4NLr0QDLM"></iframe>
+    </div>
+</center>

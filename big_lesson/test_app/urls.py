@@ -17,6 +17,11 @@ urlpatterns = [
     path('news02/', views.News02.as_view(), name='news02'),
     path('news03/', views.News03.as_view(), name='news03'),
     path('news-list/', views.NewsListView.as_view(), name='news_list'),
-    path('create_news/', views.CreateNews.as_view(), name='create_news')
+    path('create_news/', views.CreateNews.as_view(), name='create_news'),
+    path('update_news/<int:pk>/', views.NewsUpdateView.as_view(), name='update_news'),
+    path('create_feedback/', views.CreateFeedback.as_view(), name='create_feedback'),
+    path('photos/', views.Photos.as_view(), name='photos'),
+    path('client-delete/<int:pk>/', views.ClientDeleteView.as_view(), name='client_delete'),
+    path('news-delete/<int:pk>/', views.NewsDeleteView.as_view(), name='news_delete')
 ]
 

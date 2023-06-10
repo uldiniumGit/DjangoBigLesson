@@ -8,7 +8,69 @@
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- Navigation-->
-            {% include 'test_app/include_files/navigation.html' %}
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="{% url 'test_app:index' %}"><img src="/media/cropped-222.png"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'test_app:prices' %}">ПРАЙС</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">НАШИ УСЛУГИ</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="{% url 'test_app:delivery' %}">Доставка в рф</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'test_app:buy' %}">Выкуп товара</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'test_app:check' %}">Проверка товара</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'test_app:export' %}">Вывоз личных вещей</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'test_app:submit_application' %}">ПОДАТЬ ЗАЯВКУ</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">ПОСЛЕДНИЕ НОВОСТИ</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    {% if news00.title %}
+                                        <li><a class="dropdown-item" href="{% url 'test_app:news01' %}">{{ news00.title }}</a></li>
+                                    {% endif %}
+                                    {% if news01.title %}
+                                        <li><a class="dropdown-item" href="{% url 'test_app:news02' %}">{{ news01.title }}</a></li>
+                                    {% endif %}
+                                    {% if news02.title %}
+                                        <li><a class="dropdown-item" href="{% url 'test_app:news03' %}">{{ news02.title }}</a></li>
+                                    {% endif %}
+                                    <li><a class="dropdown-item" href="{% url 'test_app:news_list' %}" style="background-color: #32393f; color: white;">все новости</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'test_app:contact_us' %}">КОНТАКТЫ</a></li>
+
+                            {% if user.is_superuser %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">администрация</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="{% url 'test_app:create_news' %}">Добавить новость</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'test_app:create_feedback' %}">Добавить отзыв</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'test_app:client_list' %}">Список клиентов</a></li>
+                                </ul>
+                            </li>
+                            {% endif %}
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Войти</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="{% url 'userapp:login' %}">войти</a></li>
+                                    {% if user.is_authenticated %}
+                                        <li><a class="dropdown-item" href="{% url 'userapp:logout' %}">выйти</a></li>
+                                    {% else %}
+                                        <li><a class="dropdown-item" href="{% url 'userapp:registration' %}">зарегистрироваться</a></li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="">{{user.username}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <br>
+            <br>
             <!-- Page Content-->
             <br>
             <br>
@@ -19,26 +81,29 @@
             <br>
             <br>
             <br>
-            <div class="text-center mb-5">
-                </p>
-                <br>
-
-                    <form method="post">
-                        {% csrf_token %}
-                        {# form.as_ul #}
+            <center>
+                <div class="col-lg-8 col-xl-6">
+                    <center>
+                        <form method="post" id="contactForm">
+                            {% csrf_token %}
                             {% for field in form %}
-                                <p>{{field.label_tag}}</p>
+                                <p class="lead fw-normal text-muted mb-0">{{field.label_tag}}</p>
                                 <p>{{field}}</p>
                                 {% for error in field.errors %}
                                     {{error}}
                                 {% endfor %}
-                                <hr>
                             {% endfor %}
-                        <button type="submit">Регистрация</button>
-                    </form>
-
-            </div>
-
+                            <br>
+                            <button class="s-button" type ="submit" id="sendMessageButton">Зарегистрироваться</button>
+                        </form>
+                    </center>
+                </div>
+            </center>
+            <br>
+            <br>
+            <br>
+        <!-- Call to action-->
+        {% include 'test_app/include_files/footer.html' %}
         </main>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

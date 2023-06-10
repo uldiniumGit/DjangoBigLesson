@@ -21,29 +21,39 @@
             <br>
             <br>
             <div class="text-center mb-5">
-                <h4>С помощью этой формы можно добавлять новости на сайт. Позже форма будет изменена визуально и </h4>
-                <h4>функционально, а так же станет доступна только админу.</h4>
+                <h4>С помощью этой формы можно добавлять новости на сайт.</h4>
                 <br>
                 <p class="lead fw-normal text-muted">
-                    Ссылка пока должна быть следующего вида: https://www.youtube.com/embed/идентификатор_видео
+                    Ссылка на видео должна быть следующего вида: https://www.youtube.com/embed/идентификатор_видео
+                </p>
+                <p class="lead fw-normal text-muted">
+                    Например, https://www.youtube.com/embed/uVZe8FpL1Z8 (вместо https://www.youtube.com/watch?v=uVZe8FpL1Z8&ab_channel=Botalov)
                 </p>
                 <br>
-                <form method="post" id="NewsForm">
-
-                    {% csrf_token %}
-                    {% for field in form %}
-                        <div>
-                            {{ field.label_tag }}
-                            <br>
-                            {{ field }}
+                <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
+                    <div class="row gx-5 justify-content-center">
+                        <br>
+                        <br>
+                        <div class="col-lg-8 col-xl-6">
+                            <form method="post" enctype = "multipart/form-data">
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    <p class="lead fw-normal text-muted mb-0">{{field.label_tag}}</p>
+                                    <p>{{field}}</p>
+                                    {% for error in field.errors %}
+                                        {{error}}
+                                    {% endfor %}
+                                {% endfor %}
+                                <br>
+                                <button class="s-button" type ="submit" id="sendMessageButton">Опубликовать</button>
+                            </form>
                         </div>
-                    {% endfor %}
-                    <br>
-                    <button type ="submit" id="sendMessageButton">Send</button>
-
-                </form>
+                    </div>
+                </div>
             </div>
 
+        <!-- Call to action-->
+        {% include 'test_app/include_files/footer.html' %}
         </main>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

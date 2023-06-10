@@ -1,11 +1,12 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView, TemplateView, CreateView
+from django.views.generic import ListView, TemplateView, CreateView, DeleteView, UpdateView
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
-from .models import Client, News
+from .models import Client, News, Feedback, Imgs
 from django.views.generic.base import ContextMixin
-
 
 '''
 в каждой вьюшке происходит проверка на кол-во новостей, в зависимости от этого
@@ -15,23 +16,26 @@ from django.views.generic.base import ContextMixin
 
 # Главная страница
 def main_view(request):
-    client = Client.objects.all()
+    feedback = Feedback.objects.all()
     news = News.objects.order_by('-id')
+    photos = Imgs.objects.order_by('-id')
+    photos00 = photos[0]
     if len(news) == 0:
-        return render(request, 'test_app/index.html', context={'client': client})
+        return render(request, 'test_app/index.html', context={'feedback': feedback, 'photos00': photos00})
     if len(news) == 1:
         news00 = news[0]
-        return render(request, 'test_app/index.html', context={'client': client, 'news00': news00})
+        return render(request, 'test_app/index.html', context={'feedback': feedback, 'photos00': photos00, 'news00': news00})
     elif len(news) == 2:
         news00 = news[0]
         news01 = news[1]
-        return render(request, 'test_app/index.html', context={'client': client, 'news00': news00, 'news01': news01})
+        return render(request, 'test_app/index.html',
+                      context={'feedback': feedback, 'photos00': photos00, 'news00': news00, 'news01': news01})
     elif len(news) >= 3:
         news00 = news[0]
         news01 = news[1]
         news02 = news[2]
         return render(request, 'test_app/index.html',
-                      context={'client': client, 'news00': news00, 'news01': news01, 'news02': news02})
+                      context={'feedback': feedback, 'photos00': photos00, 'news00': news00, 'news01': news01, 'news02': news02})
 
 
 # Класс для множественного наследования.
@@ -89,7 +93,7 @@ class Export(TemplateView, NewsContextMixin):
 
 
 class Application(CreateView, NewsContextMixin):
-    fields = ['name', 'description', 'email']
+    fields = ['description', 'link', 'color', 'amount', 'price', 'name', 'phone_number']
     model = Client
     success_url = reverse_lazy('test_app:index')
     template_name = 'test_app/submit_application.html'
@@ -100,14 +104,52 @@ class Application(CreateView, NewsContextMixin):
 '''
 
 
+# TODO  1
+class CreateFeedback(UserPassesTestMixin, CreateView, NewsContextMixin):
+    fields = ['name', 'link', 'img']
+    model = Feedback
+    success_url = reverse_lazy('test_app:index')
+    template_name = 'test_app/create_feedback.html'
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
+class Photos(UserPassesTestMixin, CreateView, NewsContextMixin):
+    fields = ['name', 'img1', 'img2', 'img3']
+    model = Imgs
+    success_url = reverse_lazy('test_app:index')
+    template_name = 'test_app/photos.html'
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+
 class CreateNews(UserPassesTestMixin, CreateView, NewsContextMixin):
-    fields = ['title', 'text', 'video_link']
+    fields = ['title', 'video_link', 'text', 'img1', 'img2', 'img3', 'img4', 'img5']
     model = News
     success_url = reverse_lazy('test_app:news01')
     template_name = 'test_app/create_news.html'
 
     def test_func(self):
         return self.request.user.is_superuser
+
+    @receiver(pre_save, sender=News)
+    def change_video_link(sender, instance, **kwargs):
+        # получить video_link из формы
+        video_link = instance.video_link
+        # изменить video_link по вашему усмотрению
+        video_link = video_link.replace("watch?v=", "embed/")
+        # найти индекс символа "&"
+        try:
+            index = video_link.index("&")
+            # сделать срез строки до индекса
+            video_link = video_link[:index]
+        except ValueError:
+            # если символ "&" не найден, то ничего не делать
+            pass
+        # сохранить измененный video_link в экземпляре модели
+        instance.video_link = video_link
 
 
 class ContactUs(TemplateView, NewsContextMixin):
@@ -141,19 +183,30 @@ class NewsListView(ListView, NewsContextMixin):
 
 class ClientsListView(UserPassesTestMixin, ListView, NewsContextMixin):
     model = Client
-    template_name = 'client_list.html'
+    template_name = 'test_app/client_list.html'
+
+    def get_queryset(self):
+        return super(ClientsListView, self).get_queryset().order_by('-id')
 
     def test_func(self):
         return self.request.user.is_superuser
 
 
-# DONE создать четыре страницы под последние новости. Страница должна наполняться данными из списка новостей.
-# DONE создать страницу со списком всех старых новостей
-# DONE красиво оформить страницу новостей
-# DONE убрать из проекта приложение для видео
-# Done сделать проверку существует ли три новости, чтобы сайт не падал при отсутствии новостей
-# DONE сделать новую форму для новостей
-# DONE поменять проверку, чтобы она могла показывать не только по 0 или 3 новости
-# TODO добавить регистрацию
-# TODO перенести добавление новостей в админку
-# TODO сделать адаптивный дизайн
+class ClientDeleteView(DeleteView, NewsContextMixin):
+    template_name = 'test_app/client_delete_confirm.html'
+    model = Client
+    success_url = reverse_lazy('test_app:client_list')
+
+
+class NewsDeleteView(DeleteView, NewsContextMixin):
+    template_name = 'test_app/news_delete_confirm.html'
+    model = News
+    success_url = reverse_lazy('test_app:news_list')
+
+
+class NewsUpdateView(UpdateView, NewsContextMixin):
+    fields = ['title', 'video_link', 'text', 'img1', 'img2', 'img3', 'img4', 'img5']
+    model = News
+    success_url = reverse_lazy('test_app:news_list')
+    template_name = 'test_app/create_news.html'
+

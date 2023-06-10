@@ -9,42 +9,64 @@
         <main class="flex-shrink-0">
             <!-- Navigation-->
             {% include 'test_app/include_files/navigation.html' %}
-            <!-- Page content-->
             <section class="py-5">
                 <div class="container px-5">
-                    <!-- Contact cards-->
-                    <div class="row gx-5 row-cols-2 row-cols-lg-4 py-5">
-                        <div class="col">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-chat-dots"></i></div>
-                            <div class="h5 mb-2">Напишите нам</div>
-                            <p class="text-muted mb-0">Наш номер в ватсап</p>
-                        </div>
-                        <div class="col">
-                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-telephone"></i></div>
-                            <div class="h5">Позвоните нам</div>
-                            <p class="text-muted mb-0">Наш номер для России 11111
+                    <!-- Contact form-->
+                    <div class="rounded-3 py-5 px-4 px-md-5 mb-5">
+                        <div class="mb-5">
                             <br>
-                            Наш номер для Китая  11111</p>
+                            <section class="py-5" id="features">
+                                <div class="container px-5 my-5">
+                                    <div class="row gx-5">
+                                        <div class="col-lg-4 mb-5 mb-lg-0"><h1 class="fw-bolder mb-0">Связаться с нами</h1>
+                                            <br>
+                                            <p class="lead fw-normal mb-0"><b>WhatsApp</b></p>
+                                            <p class="lead fw-normal text-muted mb-0">+7 922 112 08 83, Владимир</p>
+                                            <p class="lead fw-normal text-muted mb-0">+7 904 169 10 43, Татьяна</p>
+                                            <br>
+                                            <p class="lead fw-normal mb-0"><b>Номер телефона в Китае</b></p>
+                                            <p class="lead fw-normal text-muted mb-0">+86 199 2475 5375, Владимир</p>
+                                            <p class="lead fw-normal text-muted mb-0">+86 180 2622 2174, Татьяна</p>
+                                            <br>
+                                            <p class="lead fw-normal mb-0"><b>WeChatID</b></p>
+                                            <p class="lead fw-normal text-muted mb-0">Kiselev-Vlad</p>
+                                            <br>
+
+                                            <a href="https://t.me/rassvetchina" target='_blank'>
+                                            <img class="img1" src="/media/telegram.png" alt=""/></a>
+                                            <a href="https://vk.com/rassvet_china" target='_blank'>
+                                            <img class="img1" src="/media/vk.png" alt=""/></a>
+                                            <a href="https://www.instagram.com/rassvet_china/" target='_blank'>
+                                            <img class="img1" src="/media/instagram.png" alt=""/></a>
+
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="row gx-5 row-cols-1 row-cols-md-2">
+                                                <div class="col mb-5 h-100 img_contacts">
+                                                    <img class="img-fluid rounded-3 my-5" src="/media/photo.jpg" alt="..." />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <center>
+                                <div style="position:relative;overflow:hidden;">
+                                    <a href="https://yandex.ru/maps?utm_medium=mapframe&utm_source=maps"
+                                       style="color:#eee;font-size:12px;position:absolute;top:0px;">Яндекс Карты</a>
+                                    <a href="https://yandex.ru/maps/?ll=113.176308%2C23.379532&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgozNjg2MzM4MDE0EmBDaGluYSwgR3Vhbmdkb25nIFByb3ZpbmNlLCBTdWItcHJvdmluY2lhbCBjaXR5IEd1YW5nemhvdSwgTGluaXlhIDksIEh1YWR1IEF1dG9jaXR5IG1ldHJvIHN0YXRpb24iCg2UWeJCFc4Ou0E%2C&utm_medium=mapframe&utm_source=maps&z=16.6"
+                                       style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс Карты — транспорт, навигация, поиск мест</a>
+                                    <iframe src="https://yandex.ru/map-widget/v1/?ll=113.176308%2C23.379532&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgozNjg2MzM4MDE0EmBDaGluYSwgR3Vhbmdkb25nIFByb3ZpbmNlLCBTdWItcHJvdmluY2lhbCBjaXR5IEd1YW5nemhvdSwgTGluaXlhIDksIEh1YWR1IEF1dG9jaXR5IG1ldHJvIHN0YXRpb24iCg2UWeJCFc4Ou0E%2C&utm_source=main_stripe_big&z=16.6"
+                                        width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+                            </center>
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- Call to action-->
-            <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
-                <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                    <div class="mb-4 mb-xl-0">
-                        <div class="fs-3 fw-bold text-white">Мы — Ваши руки и глаза в Китае!</div>
-                        <div class="text-white-50">Честность и открытость с клиентами — наш девиз! Мы всегда на связи и рады ответить на все Ваши вопросы!</div>
-                    </div>
-                    <div class="ms-xl-4">
-                    <div class="input-group mb-2">
-                        <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
-                        <button class="btn btn-outline-light" id="button-newsletter" type="button">Зарегистрироваться</button>
-                    </div>
-                    <div class="small text-white-50">Мы заботимся о вашей приватности.</div>
-                    </div>
-                </div>
-            </aside>
+
+
+        <!-- Call to action-->
+        {% include 'test_app/include_files/footer.html' %}
         </main>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

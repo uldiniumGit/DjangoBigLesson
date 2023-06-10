@@ -4,60 +4,263 @@
 <html lang="en">
     <head>
     {% include 'test_app/include_files/head.html' %}
+    <style>
+        .modal {
+          width: 900px;
+          height: auto;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+    </style>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- Navigation-->
             {% include 'test_app/include_files/navigation.html' %}
             <!-- Header-->
-            <header class="bg-dark py-5">
-                <div class="container px-5">
-                    <div class="row gx-5 align-items-center justify-content-center">
-                        <div class="col-lg-8 col-xl-7 col-xxl-6">
-                            <div class="my-5 text-center text-xl-start">
-                                <h1 class="display-5 fw-bolder text-white mb-2">Здравствуйте, дорогие друзья!</h1>
-                                <p class="lead fw-normal text-white-50 mb-4">Кто ещё с нами не знаком, нас зовут Владимир и Татьяна. Больше четырёх лет мы живём в Гуанчжоу и специализируемся на выкупе, проверке и отправке товаров из Китая в Россию. В Гуанчжоу у нас есть свой склад, а полтора года назад официально открылась наша компания «Рассвет».</p>
-                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="https://wa.me/79043812323">Написать нам в ватсап</a>
-                                </div>
+            <br>
+            <div class="slideshow-container">
+
+            <div class="mySlides fade">
+              <div class="numbertext">1 / 3</div>
+              <img src="{{photos00.img1.url}}" style="width:100%">
+
+                <a href="{% url 'test_app:contact_us' %}">
+                    <button class="fixed-button" type="button">Подробнее</button>
+                </a>
+
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">2 / 3</div>
+              <img src="{{photos00.img2.url}}" style="width:100%">
+              <div>
+                <a href="{% url 'test_app:contact_us' %}">
+                    <button class="fixed-button" type="button">Подробнее</button>
+                </a>
+              </div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">3 / 3</div>
+              <img src="{{photos00.img3.url}}" style="width:100%">
+              <div>
+                <a href="{% url 'test_app:contact_us' %}">
+                    <button class="fixed-button" type="button">Подробнее</button>
+                </a>
+              </div>
+            </div>
+
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <a class="next" onclick="plusSlides(1)">❯</a>
+
+            </div>
+            <br>
+
+            <div style="text-align:center">
+              <span class="dot" onclick="currentSlide(1)"></span>
+              <span class="dot" onclick="currentSlide(2)"></span>
+              <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+            <script>
+                let slideIndex = 1;
+                showSlides(slideIndex);
+
+                function plusSlides(n) {
+                  showSlides(slideIndex += n);
+                }
+
+                function currentSlide(n) {
+                  showSlides(slideIndex = n);
+                }
+
+                function showSlides(n) {
+                  let i;
+                  let slides = document.getElementsByClassName("mySlides");
+                  let dots = document.getElementsByClassName("dot");
+                  if (n > slides.length) {slideIndex = 1}
+                  if (n < 1) {slideIndex = slides.length}
+                  for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                  }
+                  for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                  }
+                  slides[slideIndex-1].style.display = "block";
+                  dots[slideIndex-1].className += " active";
+                }
+                let timer = setInterval(function() { plusSlides(1); }, 5000); // сохраняем идентификатор интервала в переменной
+                let slides = document.getElementsByClassName("mySlides"); // получаем элементы слайдов
+                for (let i = 0; i < slides.length; i++) { // для каждого слайда
+                  slides[i].addEventListener("mouseover", function() { // добавляем обработчик события при наведении мыши
+                    clearInterval(timer); // останавливаем интервал
+                  });
+                  slides[i].addEventListener("mouseout", function() { // добавляем обработчик события при убирании мыши
+                    timer = setInterval(function() { plusSlides(1); }, 5000); // возобновляем интервал
+                  });
+                }
+            </script>
+            <section class="py-5" id="features1">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5">
+                        <div class="div_half1">
+                            <div class="col-lg-400"><h2 class="fw-bolder mb-0">Здравствуйте, дорогие друзья!</h2>
+                                <br>
+                                <p class="lead fw-normal text-muted mb-0">Компания «Рассвет» приветствует Вас.
+                                    Более четырёх лет мы занимаемся выкупом и доставкой товаров из Китая в Россию и Казахстан.
+                                    Наши два склада и офис находятся в городе Гуанчжоу.
+                                    Приглашаем Вас в видео-тур по нашим складам.</p>
+                                <br>
+                                <a href="{% url 'test_app:contact_us' %}">
+                                    <button class="s-button" type="button">Подробнее</button>
+                                </a>
                             </div>
                         </div>
-                        <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="media/cropped-111.png" alt="..." /></div>
+                        <div class="div_half1">
+                            <div class="container-fluid002">
+                                <iframe src="https://www.youtube.com/embed/SW4NLr0QDLM"></iframe>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
-            </header>
+            </section>
+            <br>
+            <br>
             <!-- Features section-->
+            <br>
+            <br>
+            <br>
             <section class="py-5" id="features">
                 <div class="container px-5 my-5">
                     <div class="row gx-5">
-                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Итак, чем мы занимаемся?</h2></div>
+                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">Итак, чем мы занимаемся?</h2>
+                            <br>
+                            <p class="lead fw-normal text-muted mb-0">Мы уже много лет помогаем нашим клиентам с выкупом,
+                                оплатой, проверкой и отправкой товаров из Китая в Россию и Казахстан.
+                                Кроме того, помогаем в переговорах с поставщиками и решаем возникающие проблемы с товаром до отправки груза в Россию.
+                                А также осуществляем проверку образцов и высылаем видео для оценки качества товара.
+                            </p>
+                            <p class="lead fw-normal text-muted mb-0">
+                                Мы ориентируемся на долгосрочное сотрудничество, поэтому всегда поддерживаем качество нашего сервиса на высшем уровне.
+                                А для постоянных клиентов предусмотрены скидки.
+                                Мы — Ваши руки и глаза в Китае!
+                                Честность и открытость с клиентами — наш девиз! Мы всегда на связи и рады ответить на все Ваши вопросы!
+                            </p>
+                            <br>
+                            <a href="https://vk.com/rassvet_china" target='_blank'>
+                                <button class="s-button" type="button">Подробнее</button>
+                            </a>
+                        </div>
                         <div class="col-lg-8">
                             <div class="row gx-5 row-cols-1 row-cols-md-2">
-                                <div class="col mb-5 h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                                <div class="col mb-5 h-100 div_half">
                                     <h2 class="h5">ВЫКУП ТОВАРА</h2>
-                                    <p class="mb-0">Выкупим Ваш товар (без минимальной суммы закупа), с нашей комиссией — 10% от суммы заказа. В стоимость входит базовая проверка на брак и осмотр на повреждения упаковки. Кроме того можем консолидировать товар от разных поставщиков на нашем складе и упаковать для отправки.</p>
+                                    <p class="mb-0">Выкупим Ваш товар (без минимальной суммы закупа),
+                                        с нашей комиссией — 10% от суммы заказа (НО не менее 100 юаней).
+                                        В стоимость входит базовая проверка на брак и соответствие заказу,
+                                        осмотр на повреждения упаковки и товара, фотоотчет для клиента.
+                                        Кроме того, можем консолидировать товар от разных поставщиков на
+                                        нашем складе и упаковать для отправки. Но не занимаемся поиском товара. </p>
+                                    <br>
+                                    <a href="{% url 'test_app:buy' %}">
+                                        <button class="s-button" type="button">Подробнее</button>
+                                    </a>
                                 </div>
-                                <div class="col mb-5 h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                                <div class="col mb-5 h-100 div_half">
                                     <h2 class="h5">ПРОВЕРКА ТОВАРА</h2>
-                                    <p class="mb-0">Весь выкупаемый товар приходит на наш склад, и мы лично проверяем груз перед отправкой из Китая. По запросу делаем фото и видео отчёт клиенту. По необходимости, можем выехать на фабрику с инспекцией — от 100$ за день инспекции.</p>
+                                    <p class="mb-0">Весь выкупаемый товар приходит на наши склады,
+                                        и мы тщательно проверяем товар еще до отправки, так как в
+                                        случае возникновение проблем с качеством, то решить их можно
+                                        только, пока товар находится в Китае. Проверка на соответствие
+                                        количества, основных характеристик и целости, а также фотоотчет
+                                        входят в стоимость выкупа. По необходимости, можем выехать на фабрику
+                                        с инспекцией — от 150$ за день инспекции.</p>
+                                    <br>
+                                    <a href="{% url 'test_app:check' %}">
+                                        <button class="s-button" type="button">Подробнее</button>
+                                    </a>
                                 </div>
-                                <div class="col mb-5 mb-md-0 h-100">
-                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                                    <h2 class="h5">ДОСТАВКА В РФ</h2>
-                                    <p class="mb-0">Мы сотрудничаем с несколькими карго компаниями, которые проверены многими и многими партиями грузов. Поэтому мы знаем, как оптимально по цене, качеству и скорости отправлять товары разных объемов. Доставка осуществляется до склада в Москве, далее идёт транспортной компанией в город назначения.</p>
+                                <div class="col mb-5 mb-md-0 h-100 div_half">
+                                    <h2 class="h5">ДОСТАВКА В РОССИЮ И КАЗАХСТАН</h2>
+                                    <p class="mb-0">Осуществляем доставку из Китая в Россию и
+                                        Казахстан грузов от 20 кг и выше. Так как доставка подразумевает
+                                        под собой различные способы и тарифы доставки, то мы помогаем
+                                        клиентам выбрать оптимальный для каждого способ и тариф.
+                                        Средний срок доставки – 13-17 дней, а стоимость начинается
+                                        от $2,5 за кг. Точную стоимость Вам поможет рассчитать наш менеджер.</p>
+                                    <br>
+                                    <a href="{% url 'test_app:delivery' %}">
+                                        <button class="s-button" type="button">Подробнее</button>
+                                    </a>
                                 </div>
-
+                                <div class="col mb-5 mb-md-0 h-100 div_half">
+                                    <h2 class="h5">ОПЛАТА ПРОДАВЦАМ И ПЕРЕВОД ДЕНЕГ В КИТАЙ</h2>
+                                    <p class="mb-0">С недавних пор международные переводы стали несколько сложнее,
+                                        и перевести деньги из России продавцам в Китай стало проблематично.
+                                        В таких случаях мы помогаем принять рубли в России и произвести
+                                        оплату продавцам в юанях или отправить юани на Alipay, WeChat или китайскую банковскую карту.</p>
+                                    <br>
+                                    <a href="{% url 'test_app:export' %}">
+                                        <button class="s-button" type="button">Подробнее</button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <br>
+                <br>
             </section>
-            <!-- видео-->
-            <div class="text-center">
-                <iframe width="1600" height="900" src="https://www.youtube.com/embed/SW4NLr0QDLM"></iframe>
+
+
+            <div>
+                <div>
+                    <h1 class="fw-bolder text-center">Ответы на часто задаваемые вопросы:</h1>
+                </div>
+                <br>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+                <script>
+                jQuery(document).ready(function($) {
+                  $('.spoiler_title').click(function() {
+                     $(this).parents('.spoiler_wrap').find('.spoiler_content').toggleClass('open');
+                         $(this).parents('.spoiler_wrap').find('.spoiler_arrow').toggleClass('open');
+                  });
+                });
+                </script>
+                <div class="spoiler_wrap">
+                    <div class="spoiler_title"><h2>Вопрос1</h2>
+                        <span class="spoiler_arrow"><svg viewBox="-122.9 121.1 105.9 61.9"><path d="M-63.2 180.3l43.5-43.5c1.7-1.7 2.7-4 2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8 1-6.5 2.7L-69.9 161l-37.2-37.2c-1.7-1.7-4-2.7-6.5-2.7s-4.8 1-6.5 2.6c-1.9 1.8-2.8 4.2-2.8 6.6 0 2.3.9 4.6 2.6 6.5 11.4 11.5 41 41.2 43 43.3l.2.2c3.6 3.6 10.3 3.6 13.9 0z"></path></svg></span>
+                    </div>
+                    <div class="spoiler_content">
+                        <p class="lead fw-normal text-muted">Ответ1</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="spoiler_wrap">
+                    <div class="spoiler_title"><h2>Вопрос2</h2>
+                        <span class="spoiler_arrow"><svg viewBox="-122.9 121.1 105.9 61.9"><path d="M-63.2 180.3l43.5-43.5c1.7-1.7 2.7-4 2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8 1-6.5 2.7L-69.9 161l-37.2-37.2c-1.7-1.7-4-2.7-6.5-2.7s-4.8 1-6.5 2.6c-1.9 1.8-2.8 4.2-2.8 6.6 0 2.3.9 4.6 2.6 6.5 11.4 11.5 41 41.2 43 43.3l.2.2c3.6 3.6 10.3 3.6 13.9 0z"></path></svg></span>
+                    </div>
+                    <div class="spoiler_content">
+                        <p class="lead fw-normal text-muted">Ответ2</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="spoiler_wrap">
+                    <div class="spoiler_title"><h2>Вопрос3</h2>
+                        <span class="spoiler_arrow"><svg viewBox="-122.9 121.1 105.9 61.9"><path d="M-63.2 180.3l43.5-43.5c1.7-1.7 2.7-4 2.7-6.5s-1-4.8-2.7-6.5c-1.7-1.7-4-2.7-6.5-2.7s-4.8 1-6.5 2.7L-69.9 161l-37.2-37.2c-1.7-1.7-4-2.7-6.5-2.7s-4.8 1-6.5 2.6c-1.9 1.8-2.8 4.2-2.8 6.6 0 2.3.9 4.6 2.6 6.5 11.4 11.5 41 41.2 43 43.3l.2.2c3.6 3.6 10.3 3.6 13.9 0z"></path></svg></span>
+                    </div>
+                    <div class="spoiler_content">
+                        <p class="lead fw-normal text-muted">Ответ3</p>
+                    </div>
+                </div>
+                <hr>
             </div>
+
+
+
             <!-- Testimonial section-->
             <div class="py-5 bg-light">
                 <div class="container px-5 my-5">
@@ -68,46 +271,55 @@
                                     <h2 class="fw-bolder mb-0">Наши отзывы:</h2>
                                     <br>
                                     <br>
+                                    <div class="row gx-5">
+                                        {% for item in feedback %}
+                                            <p>{{ item.name }}</p>
+                                            <div class="col-12"><img class="img-fluid rounded-3 mb-5" src="{{item.img.url}}" onclick="openModal('{{item.img.url}}')" /></div>
+                                            <br>
+                                            <a href="{{ item.link }}">{{ item.link }}</a>
+                                            <br>
+                                            <br>
+                                            <hr>
+                                        {% endfor %}
+                                    </div>
 
-                                    {% for item in client %}
-                                        <img class="img-fluid rounded-3 mb-3" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." />
-                                        <div class="d-flex align-items-center justify-content-center">
-                                        <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
-                                        <div class="fw-bold">
-                                            {{ item.name }}
-                                            <span class="fw-bold text-primary mx-1">/</span>
-                                            {{ item.email }}
-                                        </div>
-                                        </div>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <br>
-                                    {% endfor %}
+                                    <div id="myModal" class="modal" onclick="closeModal()">
+                                      <img class="modal-content" id="img01">
+                                    </div>
+
+                                    <script>
+                                      if (window.innerWidth > 1000) {
+                                        function openModal(url) {
+                                          var modal = document.getElementById("myModal");
+                                          var img = document.getElementById("img01");
+                                          modal.style.display = "block";
+                                          img.src = url;
+                                        }
+
+                                        function closeModal() {
+                                          var modal = document.getElementById("myModal");
+                                          modal.style.display = "none";
+                                        }
+
+                                        var span = document.getElementsByClassName("close")[0];
+
+                                        span.onclick = function() {
+                                          var modal = document.getElementById("myModal");
+                                          modal.style.display = "none";
+                                        }
+                                      }
+                                    </script>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Call to action-->
-                <aside class="bg-primary bg-gradient rounded-3 p-4 p-sm-5 mt-5">
-                    <div class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
-                        <div class="mb-4 mb-xl-0">
-                            <div class="fs-3 fw-bold text-white">Мы — Ваши руки и глаза в Китае!</div>
-                            <div class="text-white-50">Честность и открытость с клиентами — наш девиз! Мы всегда на связи и рады ответить на все Ваши вопросы!</div>
-                        </div>
-                        <div class="ms-xl-4">
-                        <div class="input-group mb-2">
-                            <input class="form-control" type="text" placeholder="Email address..." aria-label="Email address..." aria-describedby="button-newsletter" />
-                            <button class="btn btn-outline-light" id="button-newsletter" type="button">Зарегистрироваться</button>
-                        </div>
-                        <div class="small text-white-50">Мы заботимся о вашей приватности.</div>
-                        </div>
-                    </div>
-                </aside>
-                </div>
-            </section>
+
+         <!-- Call to action-->
+
+        {% include 'test_app/include_files/footer.html' %}
+
         </main>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

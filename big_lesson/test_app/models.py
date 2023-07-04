@@ -30,8 +30,11 @@ class News(models.Model):
     img5 = models.FileField(upload_to='clients', null=True, blank=True)
     create = models.DateTimeField(default=timezone.now)
 
+    def has_image(self):
+        return bool(self.img1)
+
     def __str__(self):
-        return self.title
+        return f'{self.title}'
 
 
 class Feedback(models.Model):

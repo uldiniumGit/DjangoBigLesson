@@ -24,7 +24,8 @@ def main_view(request):
         return render(request, 'test_app/index.html', context={'feedback': feedback, 'photos00': photos00})
     if len(news) == 1:
         news00 = news[0]
-        return render(request, 'test_app/index.html', context={'feedback': feedback, 'photos00': photos00, 'news00': news00})
+        return render(request, 'test_app/index.html',
+                      context={'feedback': feedback, 'photos00': photos00, 'news00': news00})
     elif len(news) == 2:
         news00 = news[0]
         news01 = news[1]
@@ -35,7 +36,8 @@ def main_view(request):
         news01 = news[1]
         news02 = news[2]
         return render(request, 'test_app/index.html',
-                      context={'feedback': feedback, 'photos00': photos00, 'news00': news00, 'news01': news01, 'news02': news02})
+                      context={'feedback': feedback, 'photos00': photos00, 'news00': news00, 'news01': news01,
+                               'news02': news02})
 
 
 # Класс для множественного наследования.
@@ -136,6 +138,10 @@ class CreateNews(UserPassesTestMixin, CreateView, NewsContextMixin):
 
     @receiver(pre_save, sender=News)
     def change_video_link(sender, instance, **kwargs):
+
+        if not instance.video_link:
+            return
+
         # получить video_link из формы
         video_link = instance.video_link
         # изменить video_link по вашему усмотрению
@@ -176,9 +182,16 @@ class News03(TemplateView, NewsContextMixin):
 class NewsListView(ListView, NewsContextMixin):
     model = News
     template_name = 'test_app/news_list.html'
+    paginate_by = 2
+    title = 'Новости'
 
     def get_queryset(self):
         return super(NewsListView, self).get_queryset().order_by('-id')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.title
+        return context
 
 
 class ClientsListView(UserPassesTestMixin, ListView, NewsContextMixin):
@@ -209,4 +222,3 @@ class NewsUpdateView(UpdateView, NewsContextMixin):
     model = News
     success_url = reverse_lazy('test_app:news_list')
     template_name = 'test_app/create_news.html'
-

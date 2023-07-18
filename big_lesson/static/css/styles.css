@@ -12095,3 +12095,12 @@ img {vertical-align: middle;}
     margin-right: 500px;
     background-color: gray;
 }
+
+/* Два блока рядом */
+.big_block {
+  display: flex;
+}
+.small_block {
+  display: inline-block;
+  margin: 2px;
+}

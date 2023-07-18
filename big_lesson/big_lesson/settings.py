@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'test_app',
     'userapp',
     "debug_toolbar",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,14 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 ROOT_URLCONF = 'big_lesson.urls'
 

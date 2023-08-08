@@ -1,0 +1,110 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'test_app/include_files/head.html' %}
+</head>
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container px-5">
+            <a class="navbar-brand" href="{% url 'test_app:index' %}"><img src="/media/cropped-222.png"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'test_app:prices' %}">ПРАЙС</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">НАШИ УСЛУГИ</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            <li><a class="dropdown-item" href="{% url 'test_app:delivery' %}">Доставка в рф</a></li>
+                            <li><a class="dropdown-item" href="{% url 'test_app:buy' %}">Выкуп товара</a></li>
+                            <li><a class="dropdown-item" href="{% url 'test_app:check' %}">Проверка товара</a></li>
+                            <li><a class="dropdown-item" href="{% url 'test_app:export' %}">Вывоз личных вещей</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'test_app:submit_application' %}">ПОДАТЬ ЗАЯВКУ</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">ПОСЛЕДНИЕ НОВОСТИ</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            {% if news00.title %}
+                                <li><a class="dropdown-item" href="{% url 'test_app:news01' %}">{{ news00.title }}</a></li>
+                            {% endif %}
+                            {% if news01.title %}
+                                <li><a class="dropdown-item" href="{% url 'test_app:news02' %}">{{ news01.title }}</a></li>
+                            {% endif %}
+                            {% if news02.title %}
+                                <li><a class="dropdown-item" href="{% url 'test_app:news03' %}">{{ news02.title }}</a></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="{% url 'test_app:news_list' %}" style="background-color: #32393f; color: white;">все новости</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'test_app:contact_us' %}">КОНТАКТЫ</a></li>
+
+                    {% if user.is_superuser %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">администрация</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            <li><a class="dropdown-item" href="{% url 'test_app:create_news' %}">Добавить новость</a></li>
+                            <li><a class="dropdown-item" href="{% url 'test_app:create_feedback' %}">Добавить отзыв</a></li>
+                            <li><a class="dropdown-item" href="{% url 'test_app:client_list' %}">Список клиентов</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">Войти</a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                            <li><a class="dropdown-item" href="{% url 'userapp:login' %}">войти</a></li>
+                            {% if user.is_authenticated %}
+                                <li><a class="dropdown-item" href="{% url 'userapp:logout' %}">выйти</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="{% url 'userapp:registration' %}">зарегистрироваться</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="">{{user.username}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <center>
+        <h1 class="fw-bolder">Удалить клиента {{object.name}}</h1>
+        <br>
+        <hr>
+        <br>
+        <h3 style="color: #404147">Вы уверены?</h3>
+        <br>
+        <br>
+        <form method="post">
+            {% csrf_token %}
+            <button class="d-button" type="submit">Да</button>
+            <a href="{% url 'test_app:client_list' %}">
+                <button class="n-button" type="button">Отмена</button>
+            </a>
+        </form>
+    </center>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Call to action-->
+    {% include 'test_app/include_files/footer.html' %}
+</body>
+</html>

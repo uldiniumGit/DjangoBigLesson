@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'userapp',
     "debug_toolbar",
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -56,10 +57,15 @@ MIDDLEWARE = [
 ]
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
+    # Настройки прав, можно поменять права, но в моем случае это не нужно, потому что
+    # сайт используется бизнесом в ознакомительных целях. Все пользователи должны иметь доступ
+    # к информации, но не иметь доступ к изменению или добавлению информации.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ]
 }
 

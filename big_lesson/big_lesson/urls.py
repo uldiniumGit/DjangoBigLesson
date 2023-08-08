@@ -18,6 +18,14 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+
+# TODO api
+# Пока отключил, чтобы не заливать на боевой сервер
+# router = routers.DefaultRouter()
+# router.register(r'News', NewsViewSet)
+# router.register(r'Client', ClientViewSet)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('test_app.urls', namespace='test_app')),
